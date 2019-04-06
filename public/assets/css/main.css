@@ -1,0 +1,49 @@
+/* NAVBAR */
+.navbarcustom {
+    background-color: #165788;
+    color:white;
+}
+
+.logo-font {
+    font-family: 'Fjalla One', sans-serif;
+}
+
+/* BUTTONS */
+
+.btn-bluebin {
+    background-color: #4f8dc9;
+    color: white
+}
+
+.btn-bluebin-white {
+    background-color: white;
+    border-color: #4f8dc9;
+    color: #4f8dc9
+}
+
+.btn-greenbin {
+    background-color: #538259;
+    color: white
+}
+
+.btn-greenbin-white {
+    background-color: white;
+    border-color: #538259;
+    color: #538259
+}
+
+.btn-garbage {
+    background-color: #211c1b;
+    color: white
+}
+
+.btn-garbage-white {
+    background-color: white;
+    border-color: #211c1b;
+    color: #211c1b
+}
+
+.btn-bottom {
+    background-color: #165788;
+    color:white;
+}

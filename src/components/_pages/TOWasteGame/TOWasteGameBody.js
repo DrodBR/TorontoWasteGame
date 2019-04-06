@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react'
 import TOWasteGameModal from './TOWasteGameModal'
+import TOWasteGameDescription from './TOWasteGameDescription'
 
 class TOWasteGameBody extends Component {
     constructor(props) {
@@ -293,7 +294,8 @@ class TOWasteGameBody extends Component {
     render() {
         return (
             <div>
-                <h1>Toronto Waste Game</h1><hr />
+                <TOWasteGameDescription />
+                <hr />
                 <div class="container">
                     <div class="row">
                         {this.state.gameKeywords.map((obj, index) => {
@@ -301,17 +303,17 @@ class TOWasteGameBody extends Component {
                                 <div className="col-md-6 p-3 border-bottom border-right text-center" key={index}>
                                     <h4 className="text-capitalize">{obj.keyword}</h4>
                                     <button type="button" className={this.state.blueBinClass[index] ?
-                                        'btn btn-primary mr-2' : 'btn btn-white mr-2'}
+                                        'btn btn-bluebin mr-2' : 'btn btn-bluebin-white mr-2'}
                                         onClick={this.toggleClass.bind(this, "Blue Bin", index)}
                                         disabled={this.state.isDisabledButton}>Blue Bin
                                     </button>
                                     <button type="button" className={this.state.greenBinClass[index] ?
-                                        'btn btn-success mr-2' : 'btn btn-white mr-2'}
+                                        'btn btn-greenbin mr-2' : 'btn btn-greenbin-white mr-2'}
                                         onClick={this.toggleClass.bind(this, "Green Bin", index)}
                                         disabled={this.state.isDisabledButton}>Green Bin
                                     </button>
                                     <button type="button" className={this.state.garbageClass[index] ?
-                                        'btn btn-secondary mr-2' : 'btn btn-white mr-2'}
+                                        'btn btn-garbage mr-2' : 'btn btn-garbage-white mr-2'}
                                         onClick={this.toggleClass.bind(this, "Garbage", index)}
                                         disabled={this.state.isDisabledButton}>Garbage
                                     </button>
@@ -325,8 +327,8 @@ class TOWasteGameBody extends Component {
                         })}
                     </div>
                     <div className="p-3 text-right">
-                    <button type="button" className="btn btn-success m-2" onClick={this.rerollGameKeywords}>Reroll</button>
-                        <button type="button" className="btn btn-danger m-2" onClick={this.finalScore}
+                        <button type="button" className="btn btn-bottom m-2" onClick={this.rerollGameKeywords}>Reroll &amp; Play Again</button>
+                        <button type="button" className="btn btn-bottom m-2" onClick={this.finalScore}
                             disabled={this.state.isDisabledSubmitButton} data-toggle="modal" data-target="#ModalScore">
                             Get Results
                         </button>

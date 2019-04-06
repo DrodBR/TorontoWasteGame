@@ -18,7 +18,6 @@ class TOWasteGameModal extends Component {
                             </div>
                             <div class="modal-footer">
                             <button type="button" class={this.props.score === this.props.size ? "btn btn-danger d-none" : "btn btn-danger"} data-dismiss="modal" aria-label="Close">Check Errors</button>
-                            <a class="btn btn-secondary" href="./">Play Again</a>
                             </div>
                         </div>
                     </div>
