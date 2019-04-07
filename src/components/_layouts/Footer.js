@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import TOWasteGameFooter1 from '../_pages/TOWasteGame/TOWasteGameFooter1'
+import TOWasteGameFooter2 from '../_pages/TOWasteGame/TOWasteGameFooter2'
 
 class Footer extends Component {
 
@@ -8,14 +10,8 @@ class Footer extends Component {
                 <div className="footercustom">
                     <div class="container">
                         <div class="row py-3">
-                            <div className="col-md-6 text-center p-3 border-right border-left">
-                                <h4 className="logo-font">{this.props.title1}</h4>
-                                <span>Teste</span>
-                            </div>
-                            <div className="col-md-6 text-center p-3 border-right border-left">
-                                <h4 className="logo-font">{this.props.title2}</h4>
-                                <span>Teste</span>
-                            </div>
+                            <TOWasteGameFooter1 />
+                            <TOWasteGameFooter2 />
                         </div>
                     </div>
                 </div>
