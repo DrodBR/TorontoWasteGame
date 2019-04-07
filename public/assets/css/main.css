@@ -1,7 +1,8 @@
 /* NAVBAR */
+
 .navbarcustom {
     background-color: #165788;
-    color:white;
+    color: white;
 }
 
 .logo-font {
@@ -45,5 +46,54 @@
 
 .btn-bottom {
     background-color: #165788;
-    color:white;
+    color: white;
+}
+
+/* PROGRESS BAR */
+
+.progress-bar-striped2 {
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+    background-size: 1rem 1rem
+}
+
+.bg-progress {
+    background-color: #165788!important
+}
+
+/* PROGRESS BAR SIZES -- w-50 and w-100 are already included in Bootstrap */
+
+.w-00 {
+    width: 0%;
+}
+
+.w-10 {
+    width: 10%
+}
+
+.w-20 {
+    width: 20%
+}
+
+.w-30 {
+    width: 30%
+}
+
+.w-40 {
+    width: 40%
+}
+
+.w-60 {
+    width: 60%
+}
+
+.w-70 {
+    width: 70%
+}
+
+.w-80 {
+    width: 80%
+}
+
+.w-90 {
+    width: 90%
 }

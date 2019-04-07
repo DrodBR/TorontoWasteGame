@@ -33,7 +33,11 @@ class TOWasteGameBody extends Component {
             playerScore: 0,
             // control buttons
             isDisabledButton: false,
-            isDisabledSubmitButton: true
+            isDisabledSubmitButton: true,
+            // progress bar
+            progressBarSize: 10,
+            progressBarStyleBase: "progress-bar progress-bar-striped2 bg-progress w-",
+            progressBarStyleUpdated: "progress-bar progress-bar-striped2 bg-progress w-00"
         }
         this.toggleClass = this.toggleClass.bind(this)
         this.finalScore = this.finalScore.bind(this)
@@ -215,7 +219,31 @@ class TOWasteGameBody extends Component {
         this.disableButton()
     }
 
+    updateProgressBar(index) {
+
+        if (typeof this.state.playerAnswers[index] === 'undefined') {
+            let progressSize = this.state.progressBarSize
+            progressSize = progressSize + 10
+            this.setState({
+                progressBarSize: progressSize
+            })
+
+            let progressStyle = this.state.progressBarStyleBase
+            progressStyle = progressStyle + this.state.progressBarSize
+            console.log("Inside IF: " + progressStyle)
+
+            this.setState({
+                progressBarStyleUpdated: progressStyle
+            })
+        }
+
+        console.log(this.state.progressBarStyleUpdated)
+    }
+
     toggleClass(id, idx) {
+
+        this.updateProgressBar(idx)
+
         let newBlue = this.state.blueBinClass.slice();
         let newGreen = this.state.greenBinClass.slice();
         let newGarbage = this.state.garbageClass.slice();
@@ -286,7 +314,8 @@ class TOWasteGameBody extends Component {
             garbageClass: [],
             playerScore: 0,
             isDisabledButton: false,
-            isDisabledSubmitButton: true
+            isDisabledSubmitButton: true,
+            progressBarStyleUpdated: "progress-bar progress-bar-striped2 bg-progress w-00"
         })
         this.getDataAPI()
     }
@@ -326,7 +355,14 @@ class TOWasteGameBody extends Component {
                             )
                         })}
                     </div>
-                    <div className="p-3 text-right">
+                    <div className="py-3">
+                        <div class="progress">
+                            <div class={this.state.progressBarStyleUpdated}
+                                role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                    </div>
+                    <div className="pb-3 text-right">
                         <button type="button" className="btn btn-bottom m-2" onClick={this.rerollGameKeywords}>Reroll &amp; Play Again</button>
                         <button type="button" className="btn btn-bottom m-2" onClick={this.finalScore}
                             disabled={this.state.isDisabledSubmitButton} data-toggle="modal" data-target="#ModalScore">
