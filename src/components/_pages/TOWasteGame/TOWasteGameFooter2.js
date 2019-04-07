@@ -6,7 +6,14 @@ class TOWasteGameFooter2 extends Component {
         return (
             <div className="col-md-6 text-center p-3 border-right border-left">
                 <h4 className="logo-font">Contact</h4>
-                <span>Teste 2</span>
+                <ul className="list-unstyled text-left">
+                    <h5>
+                        <li><a href="http://globo.com"><i class="fab fa-github-square p-2 pr-3"></i>/DrodBR</a></li>
+                        <li><i class="fab fa-linkedin p-2 pr-3"></i>/danielfgrodrigues/</li>
+                        <li><i class="fab fa-facebook-square p-2 pr-3"></i>/danielfernandoguimaraesrodrigues</li>
+                        <li><i class="fas fa-envelope-square p-2 pr-3"></i>daniel.fernando@msn.com</li>
+                    </h5>
+                </ul>
             </div>
         )
     }
