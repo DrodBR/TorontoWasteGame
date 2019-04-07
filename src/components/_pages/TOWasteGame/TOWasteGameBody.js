@@ -222,7 +222,7 @@ class TOWasteGameBody extends Component {
 
         if (typeof this.state.playerAnswers[index] === 'undefined') {
             let progressSize = this.state.progressBarSize
-            progressSize = progressSize + 10
+            progressSize = progressSize + (100/(this.state.gameSize))
             this.setState({
                 progressBarSize: progressSize
             })
@@ -369,7 +369,7 @@ class TOWasteGameBody extends Component {
                 </div>
 
                 <TOWasteGameModal title="Score" score={this.state.playerScore} size={this.state.gameSize}>
-                    Your's Score is:
+                    Your score is:
                     <h1>{this.state.playerScore}/{this.state.gameSize}</h1>
                 </ TOWasteGameModal>
             </div>

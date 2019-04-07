@@ -5,6 +5,16 @@
     color: white;
 }
 
+/* FOOTER */
+.footercustom {
+    background-color: #165788;
+    color: white;
+}
+
+.footerblock {
+    border-right: #538259
+}
+
 .logo-font {
     font-family: 'Fjalla One', sans-serif;
 }

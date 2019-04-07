@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import FullLayout from '../_layouts/FullLayout'
 import Navbar from '../_layouts/Navbar'
+import Footer from '../_layouts/Footer'
 import Title from '../_layouts/Title'
 import TOWasteGameBody from './TOWasteGame/TOWasteGameBody'
 
@@ -13,6 +14,7 @@ class Home extends Component {
                 <FullLayout 
                     main={<TOWasteGameBody />}
                 />
+                <Footer />
             </div>
         )
     }
