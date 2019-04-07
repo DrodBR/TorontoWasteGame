@@ -1,0 +1,23 @@
+[debug] [2019-04-07T16:46:21.171Z] ----------------------------------------------------------------------
+[debug] [2019-04-07T16:46:21.175Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2019-04-07T16:46:21.175Z] CLI Version:   6.5.3
+[debug] [2019-04-07T16:46:21.175Z] Platform:      darwin
+[debug] [2019-04-07T16:46:21.175Z] Node Version:  v10.15.1
+[debug] [2019-04-07T16:46:21.177Z] Time:          Sun Apr 07 2019 12:46:21 GMT-0400 (Eastern Daylight Time)
+[debug] [2019-04-07T16:46:21.177Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-04-07T16:46:21.252Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-04-07T16:46:21.253Z] > authorizing via signed-in user
+[debug] [2019-04-07T16:46:21.253Z] [iam] checking project torontowastegame for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-04-07T16:46:21.258Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/torontowastegame:testIamPermissions  
+
+[debug] [2019-04-07T16:46:21.783Z] <<< HTTP RESPONSE 200
+[debug] [2019-04-07T16:46:21.787Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/torontowastegame  
+ 
+[debug] [2019-04-07T16:46:22.022Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'torontowastegame'...
+[info] 
+[info] i  deploying hosting
+[debug] [2019-04-07T16:46:22.030Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/torontowastegame/versions  
+

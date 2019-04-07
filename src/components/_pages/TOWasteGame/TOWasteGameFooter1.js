@@ -5,12 +5,12 @@ class TOWasteGameFooter1 extends Component {
     render() {
         return (
             <div className="col-md-6 text-center p-3 border-right border-left">
-                <h4 className="logo-font">Author</h4>
-                <div className="text-center">
-                    <div class="LI-profile-badge text-left border" data-version="v1" data-size="large"
-                        data-locale="en_CA" data-type="horizontal" data-theme="dark" data-vanity="danielfgrodrigues">
-                        <a class="LI-simple-link" href='https://ca.linkedin.com/in/danielfgrodrigues?trk=profile-badge'>Daniel Fernando Guimaraes Rodrigues</a>
-                    </div>
+                <h3 className="logo-font">Author</h3>
+                <div className="text-center float-center">
+                    <img src={process.env.PUBLIC_URL + '/assets/images/me.jpg'} alt="me"
+                        className="border rounded-circle w-25 bg-dark p-1" />
+                    <br />
+                    <strong>Daniel Fernando<br />Guimarães Rodrigues</strong>
                 </div>
             </div>
         )
