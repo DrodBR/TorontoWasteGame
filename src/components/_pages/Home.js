@@ -14,7 +14,7 @@ class Home extends Component {
                 <FullLayout 
                     main={<TOWasteGameBody />}
                 />
-                <Footer />
+                <Footer title1="Author" title2="Contact"/>
             </div>
         )
     }

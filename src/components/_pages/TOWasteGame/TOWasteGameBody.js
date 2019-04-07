@@ -312,6 +312,8 @@ class TOWasteGameBody extends Component {
             playerScore: 0,
             isDisabledButton: false,
             isDisabledSubmitButton: true,
+            playerAnswers: [],
+            progressBarSize: 10,
             progressBarStyleUpdated: "progress-bar progress-bar-striped2 bg-progress w-00"
         })
         this.getDataAPI()
