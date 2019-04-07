@@ -60,7 +60,6 @@ class TOWasteGameBody extends Component {
         })
 
         dataPromise.then((data) => {
-
             for (let i = 0; data.length > i; i++) {
 
                 // Get Blue Bin data
@@ -199,7 +198,7 @@ class TOWasteGameBody extends Component {
         let newPhrase = this.state.phrase
 
         for (let i = 0; i < this.state.gameSize; i++) {
-            if (this.state.gameKeywords[i].category === this.state.playerAnswers[i]) { // comparison is working
+            if (this.state.gameKeywords[i].category === this.state.playerAnswers[i]) {
                 newScore++
                 newScoredOrNot[i] = true;
                 newPhrase[i] = "Correct!"
@@ -230,14 +229,11 @@ class TOWasteGameBody extends Component {
 
             let progressStyle = this.state.progressBarStyleBase
             progressStyle = progressStyle + this.state.progressBarSize
-            console.log("Inside IF: " + progressStyle)
 
             this.setState({
                 progressBarStyleUpdated: progressStyle
             })
         }
-
-        console.log(this.state.progressBarStyleUpdated)
     }
 
     toggleClass(id, idx) {
@@ -250,23 +246,23 @@ class TOWasteGameBody extends Component {
         let newAnswers = this.state.playerAnswers.slice();
 
         if (id === "Blue Bin") {
-            newBlue[idx] = true
-            newGreen[idx] = false
-            newGarbage[idx] = false
+            newBlue[idx] = false
+            newGreen[idx] = true
+            newGarbage[idx] = true
             newAnswers[idx] = "Blue Bin"
         }
 
         if (id === "Green Bin") {
-            newBlue[idx] = false
-            newGreen[idx] = true
-            newGarbage[idx] = false
+            newBlue[idx] = true
+            newGreen[idx] = false
+            newGarbage[idx] = true
             newAnswers[idx] = "Green Bin"
         }
 
         if (id === "Garbage") {
-            newBlue[idx] = false
-            newGreen[idx] = false
-            newGarbage[idx] = true
+            newBlue[idx] = true
+            newGreen[idx] = true
+            newGarbage[idx] = false
             newAnswers[idx] = "Garbage"
         }
 
@@ -284,8 +280,9 @@ class TOWasteGameBody extends Component {
         let count = 0
 
         for (let i = 0; i < this.state.gameKeywords.length; i++) {
-            if (!this.state.blueBinClass[i] || !this.state.greenBinClass[i] || !this.state.greenBinClass[i]) {
+            if (typeof this.state.playerAnswers[i] !== 'undefined') {
                 count++
+                console.log(count)
             }
         }
 
@@ -300,9 +297,9 @@ class TOWasteGameBody extends Component {
         })
     }
 
-    disableSubmitButton(x) {
+    disableSubmitButton(status) {
         this.setState({
-            isDisabledSubmitButton: x
+            isDisabledSubmitButton: status
         })
     }
 
@@ -332,17 +329,17 @@ class TOWasteGameBody extends Component {
                                 <div className="col-md-6 p-3 border-bottom border-right text-center" key={index}>
                                     <h4 className="text-capitalize">{obj.keyword}</h4>
                                     <button type="button" className={this.state.blueBinClass[index] ?
-                                        'btn btn-bluebin mr-2' : 'btn btn-bluebin-white mr-2'}
+                                        'btn btn-bluebin-white mr-2' : 'btn btn-bluebin mr-2'}
                                         onClick={this.toggleClass.bind(this, "Blue Bin", index)}
                                         disabled={this.state.isDisabledButton}>Blue Bin
                                     </button>
                                     <button type="button" className={this.state.greenBinClass[index] ?
-                                        'btn btn-greenbin mr-2' : 'btn btn-greenbin-white mr-2'}
+                                        'btn btn-greenbin-white mr-2' : 'btn btn-greenbin mr-2'}
                                         onClick={this.toggleClass.bind(this, "Green Bin", index)}
                                         disabled={this.state.isDisabledButton}>Green Bin
                                     </button>
                                     <button type="button" className={this.state.garbageClass[index] ?
-                                        'btn btn-garbage mr-2' : 'btn btn-garbage-white mr-2'}
+                                        'btn btn-garbage-white mr-2' : 'btn btn-garbage mr-2'}
                                         onClick={this.toggleClass.bind(this, "Garbage", index)}
                                         disabled={this.state.isDisabledButton}>Garbage
                                     </button>
