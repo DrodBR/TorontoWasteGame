@@ -329,7 +329,7 @@ class TOWasteGameBody extends Component {
                     <div class="row">
                         {this.state.gameKeywords.map((obj, index) => {
                             return (
-                                <div className="col-md-6 p-3 border-bottom border-right text-center" key={index}>
+                                <div className="col-md-6 p-3 text-center border-bottom" key={index}>
                                     <h4 className="text-capitalize">{obj.keyword}</h4>
                                     <button type="button" className={this.state.blueBinClass[index] ?
                                         'btn btn-bluebin-white mr-2' : 'btn btn-bluebin mr-2'}
@@ -355,6 +355,7 @@ class TOWasteGameBody extends Component {
                             )
                         })}
                     </div>
+                    <hr />
                     <div className="py-3">
                         <div class="progress">
                             <div class={this.state.progressBarStyleUpdated}

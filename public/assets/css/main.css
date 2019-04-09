@@ -38,6 +38,10 @@
     color: #211c1b
 }
 
+.border-dotted {
+    border: dotted;
+}
+
 /* BUTTONS */
 
 .btn-bluebin {

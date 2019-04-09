@@ -4,9 +4,9 @@ class TOWasteGameDescription extends Component {
 
     render() {
         return (
-            <div className="container border rounded p-4">
+            <div className="container border-dotted rounded p-3">
                 <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-md-6 border-right pb-2">
                         <h3 className="logo-font"><i class="fas fa-dice-d6"></i> The Game</h3>
                         Show that you know everything when the subject is dispose materials.
                         You have 10 items that need to be disposed. Where will be the best place for them?
@@ -14,7 +14,7 @@ class TOWasteGameDescription extends Component {
                     </div>
                     <div className="col-md-6">
                         <h3 className="logo-font"><i class="fas fa-recycle"></i> Instructions</h3>
-                        <div className="pb-2">Try to follow these premises:</div>
+                        <div className="pb-2">Try to follow these premises to get the best score:</div>
                         <ul className="list-unstyled">
                             <li>
                                 <div className="pb-1">
