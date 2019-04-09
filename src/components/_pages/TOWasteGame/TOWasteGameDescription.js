@@ -8,9 +8,9 @@ class TOWasteGameDescription extends Component {
                 <div className="row">
                     <div className="col-md-6 border-right pb-2">
                         <h3 className="logo-font"><i class="fas fa-dice-d6"></i> The Game</h3>
-                        Show that you know everything when the subject is dispose materials.
-                        You have 10 items that need to be disposed. Where will be the best place for them?
-                        <br /> <br />Test your knowledge and learn more!
+                        Test your knowledge on how to properly throw your trash out in the city of Toronto.
+                        Indicate where each of the 10 items below should be discarded and see how much you know!
+                        <br /> <br />Play as many times as you want to learn more!
                     </div>
                     <div className="col-md-6">
                         <h3 className="logo-font"><i class="fas fa-recycle"></i> Instructions</h3>
