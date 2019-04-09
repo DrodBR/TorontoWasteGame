@@ -162,7 +162,7 @@ class TOWasteGameBody extends Component {
         this.insertGameKeywords(this.state.blueBinKeywords, "Blue Bin", size1)
         this.insertGameKeywords(this.state.greenBinKeywords, "Green Bin", size2)
         this.insertGameKeywords(this.state.garbageKeywords, "Garbage", size3)
-        console.log(this.state.gameKeywords)
+        // console.log(this.state.gameKeywords)
 
         let shuffle = this.shuffleGameKeywords(this.state.gameKeywords)
         this.setState({
@@ -204,11 +204,11 @@ class TOWasteGameBody extends Component {
             if (this.state.gameKeywords[i].category === this.state.playerAnswers[i]) {
                 newScore++
                 newScoredOrNot[i] = true;
-                newPhrase[i] = "Correct!"
+                newPhrase[i] = "Correct";
                 newPhraseIcon[i] = "far fa-check-circle";
             } else {
                 newScoredOrNot[i] = false;
-                newPhrase[i] = this.state.gameKeywords[i].category + "!"
+                newPhrase[i] = this.state.gameKeywords[i].category;
                 newPhraseIcon[i] = "far fa-times-circle";
             }
         }
@@ -288,7 +288,6 @@ class TOWasteGameBody extends Component {
         for (let i = 0; i < this.state.gameKeywords.length; i++) {
             if (typeof this.state.playerAnswers[i] !== 'undefined') {
                 count++
-                console.log(count)
             }
         }
 
