@@ -19,6 +19,20 @@
     font-family: 'Fjalla One', sans-serif;
 }
 
+/* DESCRIPTION */
+
+.icon-bluebin {
+    color: #4f8dc9
+}
+
+.icon-greenbin {
+    color: #538259
+}
+
+.icon-garbage {
+    color: #211c1b
+}
+
 /* BUTTONS */
 
 .btn-bluebin {

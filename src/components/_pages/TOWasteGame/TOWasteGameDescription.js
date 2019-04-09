@@ -7,19 +7,30 @@ class TOWasteGameDescription extends Component {
             <div className="container border rounded p-4">
                 <div className="row">
                     <div className="col-md-6">
-                        <h3 className="logo-font">The Game</h3>
-                        <ol>
-                            <li>Select in which garbage each of the objects should go.</li>
-                            <li>UNDER CONSTRUCTION!</li>
-                        </ol>
+                        <h3 className="logo-font"><i class="fas fa-dice-d6"></i> The Game</h3>
+                        Show that you know everything when the subject is dispose materials.
+                        You have 10 items that need to be disposed. Where will be the best place for them?
+                        <br /> <br />Test your knowledge and learn more!
                     </div>
                     <div className="col-md-6">
-                        <h3 className="logo-font"><i class="fas fa-recycle"></i> How to Recycle</h3>
-                        Try to follow these premises:
+                        <h3 className="logo-font"><i class="fas fa-recycle"></i> Instructions</h3>
+                        <div className="pb-2">Try to follow these premises:</div>
                         <ul className="list-unstyled">
-                            <li><i class="fas fa-dumpster"></i> Blue bin: UNDER CONSTRUCTION!</li>
-                            <li><i class="fas fa-dumpster"></i> Green bin: UNDER CONSTRUCTION!</li>
-                            <li><i class="fas fa-dumpster"></i> Garbage: UNDER CONSTRUCTION!</li>
+                            <li>
+                                <div className="pb-1">
+                                    <i class="fas fa-dumpster icon-bluebin"></i> Blue Bin: Recyclable
+                                </div>
+                            </li>
+                            <li>
+                                <div className="pb-1">
+                                    <i class="fas fa-dumpster icon-greenbin"></i> Green Bin: Organic
+                                </div>
+                            </li>
+                            <li>
+                                <div className="pb-1">
+                                    <i class="fas fa-dumpster icon-garbage"></i> Garbage: Others
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
