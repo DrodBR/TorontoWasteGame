@@ -8,10 +8,16 @@ class Footer extends Component {
         return (
             <div className="pt-3">
                 <div className="footercustom">
-                    <div class="container">
-                        <div class="row py-3">
+                    <div className="container">
+                        <div className="row py-3">
                             <TOWasteGameFooter1 />
                             <TOWasteGameFooter2 />
+                        </div>
+                        <div className="row">
+                            <div className="pt-3 pb-3 centralize">
+                                <i class="fas fa-exclamation-circle"></i> This game has no direct
+                                relationship with the City of Toronto.
+                            </div>
                         </div>
                     </div>
                 </div>

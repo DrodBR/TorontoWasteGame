@@ -19,6 +19,11 @@
     font-family: 'Fjalla One', sans-serif;
 }
 
+.centralize {
+    margin: 0 auto;
+    float: none
+}
+
 /* DESCRIPTION */
 
 .icon-bluebin {
