@@ -4,7 +4,7 @@ class TOWasteGameDescription extends Component {
 
     render() {
         return (
-            <div className="container border-dotted rounded p-3">
+            <div className="container border rounded p-3">
                 <div className="row">
                     <div className="col-md-6 border-right pb-2">
                         <h3 className="logo-font"><i class="fas fa-dice-d6"></i> The Game</h3>
