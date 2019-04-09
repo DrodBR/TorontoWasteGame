@@ -31,6 +31,7 @@ class TOWasteGameBody extends Component {
             playerAnswers: [],
             scoredOrNot: [],
             phrase: [],
+            phraseIcon: [],
             playerScore: 0,
             // control buttons
             isDisabledButton: false,
@@ -197,22 +198,26 @@ class TOWasteGameBody extends Component {
         let newScore = 0
         let newScoredOrNot = this.state.scoredOrNot
         let newPhrase = this.state.phrase
+        let newPhraseIcon = this.state.phraseIcon
 
         for (let i = 0; i < this.state.gameSize; i++) {
             if (this.state.gameKeywords[i].category === this.state.playerAnswers[i]) {
                 newScore++
                 newScoredOrNot[i] = true;
                 newPhrase[i] = "Correct!"
+                newPhraseIcon[i] = "far fa-check-circle";
             } else {
                 newScoredOrNot[i] = false;
-                newPhrase[i] = "Correct answer: " + this.state.gameKeywords[i].category + "."
+                newPhrase[i] = this.state.gameKeywords[i].category + "!"
+                newPhraseIcon[i] = "far fa-times-circle";
             }
         }
 
         this.setState({
             playerScore: newScore,
             scoredOrNot: newScoredOrNot,
-            phrase: newPhrase
+            phrase: newPhrase,
+            phraseIcon: newPhraseIcon
         })
         // console.log(this.state.scoredOrNot)
         // console.log(this.state.phrase)
@@ -330,7 +335,7 @@ class TOWasteGameBody extends Component {
                         {this.state.gameKeywords.map((obj, index) => {
                             return (
                                 <div className="col-md-6 p-3 text-center border-bottom" key={index}>
-                                    <h4 className="text-capitalize">{obj.keyword}</h4>
+                                    <h4 className="text-capitalize">{obj.keyword} <i class=""></i></h4>
                                     <button type="button" className={this.state.blueBinClass[index] ?
                                         'btn btn-bluebin-white mr-2' : 'btn btn-bluebin mr-2'}
                                         onClick={this.toggleClass.bind(this, "Blue Bin", index)}
@@ -348,7 +353,7 @@ class TOWasteGameBody extends Component {
                                     </button>
                                     <div className={!this.state.isDisabledButton ? 'p-3 d-none' : 'p-3'}>
                                         <div className={!this.state.scoredOrNot[index] ? 'text-danger' : ''}>
-                                            {this.state.phrase[index]}
+                                        <i class={this.state.phraseIcon[index]}></i> {this.state.phrase[index]}
                                         </div>
                                     </div>
                                 </div>

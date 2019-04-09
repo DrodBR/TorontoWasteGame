@@ -14,7 +14,7 @@ class Footer extends Component {
                             <TOWasteGameFooter2 />
                         </div>
                         <div className="row">
-                            <div className="pt-3 pb-3 centralize">
+                            <div className="p-3 centralize">
                                 <i class="fas fa-exclamation-circle"></i> This game has no direct
                                 relationship with the City of Toronto.
                             </div>
