@@ -37,9 +37,7 @@ class TOWasteGameBody extends Component {
             isDisabledButton: false,
             isDisabledSubmitButton: true,
             // progress bar
-            progressBarSize: 10,
-            progressBarStyleBase: "progress-bar progress-bar-striped2 bg-progress w-",
-            progressBarStyleUpdated: "progress-bar progress-bar-striped2 bg-progress w-00"
+            progressBarSize: 0,
         }
         this.toggleClass = this.toggleClass.bind(this)
         this.finalScore = this.finalScore.bind(this)
@@ -232,13 +230,6 @@ class TOWasteGameBody extends Component {
             this.setState({
                 progressBarSize: progressSize
             })
-
-            let progressStyle = this.state.progressBarStyleBase
-            progressStyle = progressStyle + this.state.progressBarSize
-
-            this.setState({
-                progressBarStyleUpdated: progressStyle
-            })
         }
     }
 
@@ -362,7 +353,7 @@ class TOWasteGameBody extends Component {
                     <hr />
                     <div className="py-3">
                         <div class="progress">
-                            <div class={this.state.progressBarStyleUpdated}
+                            <div class={`progress-bar progress-bar-striped2 bg-progress w-${this.state.progressBarSize}`}
                                 role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
                             </div>
                         </div>
