@@ -1,9 +1,7 @@
-// ALT + SHIFT + F
-// TODO: Void blank keywords
-
 import React, { Component } from 'react'
 import TOWasteGameModal from './TOWasteGameModal'
 import TOWasteGameDescription from './TOWasteGameDescription'
+import ProgressBar from './ProgressBar'
 
 class TOWasteGameBody extends Component {
     constructor(props) {
@@ -226,7 +224,7 @@ class TOWasteGameBody extends Component {
 
         if (typeof this.state.playerAnswers[index] === 'undefined') {
             let progressSize = this.state.progressBarSize
-            progressSize = progressSize + (100/(this.state.gameSize))
+            progressSize = progressSize + (100 / (this.state.gameSize))
             this.setState({
                 progressBarSize: progressSize
             })
@@ -309,8 +307,7 @@ class TOWasteGameBody extends Component {
             isDisabledButton: false,
             isDisabledSubmitButton: true,
             playerAnswers: [],
-            progressBarSize: 10,
-            progressBarStyleUpdated: "progress-bar progress-bar-striped2 bg-progress w-00"
+            progressBarSize: 0,
         })
         this.getDataAPI()
     }
@@ -343,7 +340,7 @@ class TOWasteGameBody extends Component {
                                     </button>
                                     <div className={!this.state.isDisabledButton ? 'p-3 d-none' : 'p-3'}>
                                         <div className={!this.state.scoredOrNot[index] ? 'text-danger' : ''}>
-                                        <i class={this.state.phraseIcon[index]}></i> {this.state.phrase[index]}
+                                            <i class={this.state.phraseIcon[index]}></i> {this.state.phrase[index]}
                                         </div>
                                     </div>
                                 </div>
@@ -351,13 +348,7 @@ class TOWasteGameBody extends Component {
                         })}
                     </div>
                     <hr />
-                    <div className="py-3">
-                        <div class="progress">
-                            <div class={`progress-bar progress-bar-striped2 bg-progress w-${this.state.progressBarSize}`}
-                                role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                            </div>
-                        </div>
-                    </div>
+                    <ProgressBar size={this.state.progressBarSize} />
                     <div className="pb-3 text-right">
                         <button type="button" className="btn btn-bottom m-2" onClick={this.rerollGameKeywords}>Reroll &amp; Play Again</button>
                         <button type="button" className="btn btn-bottom m-2" onClick={this.finalScore}
