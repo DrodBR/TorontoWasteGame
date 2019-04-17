@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class TOWasteGameDescription extends Component {
+class Description extends Component {
 
     render() {
         return (
@@ -37,4 +37,4 @@ class TOWasteGameDescription extends Component {
             </div>
         )
     }
-} export default TOWasteGameDescription
+} export default Description

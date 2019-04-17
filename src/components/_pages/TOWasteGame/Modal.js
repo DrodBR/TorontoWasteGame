@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class TOWasteGameModal extends Component {
+class Modal extends Component {
 
     render() {
         return (
@@ -32,4 +32,4 @@ class TOWasteGameModal extends Component {
         )
     }
 
-} export default TOWasteGameModal
+} export default Modal

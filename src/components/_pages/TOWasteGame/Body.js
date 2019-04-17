@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import TOWasteGameModal from './TOWasteGameModal'
-import TOWasteGameDescription from './TOWasteGameDescription'
+import Modal from './Modal'
+import Description from './Description'
 import ProgressBar from './ProgressBar'
 
-class TOWasteGameBody extends Component {
+class Body extends Component {
     constructor(props) {
         super(props)
 
@@ -315,7 +315,7 @@ class TOWasteGameBody extends Component {
     render() {
         return (
             <div>
-                <TOWasteGameDescription />
+                <Description />
                 <hr />
                 <div class="container">
                     <div class="row">
@@ -358,12 +358,12 @@ class TOWasteGameBody extends Component {
                     </div>
                 </div>
 
-                <TOWasteGameModal title="Score" score={this.state.playerScore} size={this.state.gameSize}>
+                <Modal title="Score" score={this.state.playerScore} size={this.state.gameSize}>
                     Your score is:
                     <h1>{this.state.playerScore}/{this.state.gameSize}</h1>
-                </ TOWasteGameModal>
+                </Modal>
             </div>
         )
     }
 }
-export default TOWasteGameBody  
+export default Body

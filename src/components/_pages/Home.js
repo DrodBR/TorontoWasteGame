@@ -3,7 +3,7 @@ import FullLayout from '../_layouts/FullLayout'
 import Navbar from '../_layouts/Navbar'
 import Footer from '../_layouts/Footer'
 import Title from '../_layouts/Title'
-import TOWasteGameBody from './TOWasteGame/TOWasteGameBody'
+import Body from './TOWasteGame/Body'
 
 class Home extends Component {
     render() {
@@ -12,7 +12,7 @@ class Home extends Component {
                 <Title title="Toronto Waste Game"/>
                 <Navbar />
                 <FullLayout 
-                    main={<TOWasteGameBody />}
+                    main={<Body />}
                 />
                 <Footer title1="Author" title2="Contact"/>
             </div>
