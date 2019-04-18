@@ -9,18 +9,14 @@ class Body extends Component {
 
         this.state = {
             // All Data
-            TOW: [],
             gameSize: 10,
             // Blue Bin
-            blueBinData: [],
             blueBinKeywords: [],
             blueBinClass: [],
             // Green Bin
-            greenBinData: [],
             greenBinKeywords: [],
             greenBinClass: [],
             // Garbage
-            garbageData: [],
             garbageKeywords: [],
             garbageClass: [],
             // Selected Game Keywords
@@ -47,9 +43,6 @@ class Body extends Component {
             fetch("https://secure.toronto.ca/cc_sr_v1/data/swm_waste_wizard_APR?limit=1000")
                 .then(res => res.json())
                 .then(res => {
-                    this.setState({
-                        TOW: res
-                    });
                     resolve(res)
                     // console.log("Got Toronto Waste Data.")
                 }).catch((err) => {
@@ -59,57 +52,31 @@ class Body extends Component {
 
         dataPromise.then((data) => {
             for (let i = 0; data.length > i; i++) {
+                let pushIt
 
-                // Get Blue Bin data
                 if (data[i].category === "Blue Bin") {
-                    let pushIt = this.state.blueBinData.concat(data[i])
-                    this.setState({
-                        blueBinData: pushIt
-                    })
+                    let key = data[i].keywords.split(',');
+                    for (let i = 0; i < key.length; i++) {
+                        pushIt = this.state.blueBinKeywords.concat(key[i])
+                    }
+                    this.setState({ blueBinKeywords: pushIt })
                 }
 
-                // Get Green Bin data
                 if (data[i].category === "Green Bin") {
-                    let pushIt = this.state.greenBinData.concat(data[i])
-                    this.setState({
-                        greenBinData: pushIt
-                    })
+                    let key = data[i].keywords.split(',');
+                    for (let i = 0; i < key.length; i++) {
+                        pushIt = this.state.greenBinKeywords.concat(key[i])
+                    }
+                    this.setState({ greenBinKeywords: pushIt })
                 }
 
-                // Get Garbage data
                 if (data[i].category === "Garbage") {
-                    let pushIt = this.state.garbageData.concat(data[i])
-                    this.setState({
-                        garbageData: pushIt
-                    })
+                    let key = data[i].keywords.split(',');
+                    for (let i = 0; i < key.length; i++) {
+                        pushIt = this.state.garbageKeywords.concat(key[i])
+                    }
+                    this.setState({ garbageKeywords: pushIt })
                 }
-            }
-
-            // Blue Bin Keywords
-            for (let i = 0; this.state.blueBinData.length > i; i++) {
-                let key = this.state.blueBinData[i].keywords.split(',')
-                let pushIt = this.state.blueBinKeywords.concat(key)
-                this.setState({
-                    blueBinKeywords: pushIt
-                })
-            }
-
-            // Green Bin Keywords
-            for (let i = 0; this.state.greenBinData.length > i; i++) {
-                let key = this.state.greenBinData[i].keywords.split(',')
-                let pushIt = this.state.greenBinKeywords.concat(key)
-                this.setState({
-                    greenBinKeywords: pushIt
-                })
-            }
-
-            // Garbage Keywords
-            for (let i = 0; this.state.garbageData.length > i; i++) {
-                let key = this.state.garbageData[i].keywords.split(',')
-                let pushIt = this.state.garbageKeywords.concat(key)
-                this.setState({
-                    garbageKeywords: pushIt
-                })
             }
             this.getGameKeywords()
 
@@ -140,7 +107,7 @@ class Body extends Component {
 
             let pushIt = this.state.gameKeywords.concat({
                 category: categoryName,
-                keyword: keyword.trim(),
+                keyword: keyword,
             })
             this.setState({
                 gameKeywords: pushIt
@@ -176,7 +143,7 @@ class Body extends Component {
     }
 
     shuffleGameKeywords(array) {
-        const size = array.length
+        let size = array.length
         let tempArray
         let index
 
