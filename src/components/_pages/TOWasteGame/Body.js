@@ -90,16 +90,7 @@ class Body extends Component {
 
     insertGameKeywords(categoryKeywords, categoryName, size) {
         for (let i = 0; size > i; i++) {
-            let keyword
-            let emptyKeyword = true
-
-            do {
-                keyword = categoryKeywords[this.randomInt(0, categoryKeywords.length)]
-                if (keyword !== " ") {
-                    emptyKeyword = false
-                }
-            } while (emptyKeyword === true)
-
+            let keyword = categoryKeywords[this.randomInt(0, categoryKeywords.length)]
             let pushIt = this.state.gameKeywords.concat({
                 category: categoryName,
                 keyword: keyword,
@@ -111,8 +102,8 @@ class Body extends Component {
     }
 
     getGameKeywords() {
-        const min = 2
-        const max = 5
+        const min = parseInt(this.state.gameSize/5)
+        const max = parseInt(this.state.gameSize/2)
         const size1 = this.randomInt(min, max)
         const size2 = this.randomInt(min, max)
         const size3 = this.state.gameSize - size1 - size2
