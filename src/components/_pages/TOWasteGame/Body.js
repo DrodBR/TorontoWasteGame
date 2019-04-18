@@ -13,13 +13,10 @@ class Body extends Component {
             gameKeywords: [],
             // Blue Bin
             blueBinKeywords: [],
-            blueBinClass: [],
             // Green Bin
             greenBinKeywords: [],
-            greenBinClass: [],
             // Garbage
             garbageKeywords: [],
-            garbageClass: [],
             // Player Answers
             playerAnswers: [],
             scoredOrNot: [],
@@ -52,6 +49,7 @@ class Body extends Component {
             for (let i = 0; data.length > i; i++) {
                 let pushIt
                 let key = data[i].keywords.split(',');
+
                 for (let j = 0; j < key.length; j++) {
                     if (key[j] !== "") {
                         switch (data[i].category) {
@@ -102,8 +100,8 @@ class Body extends Component {
     }
 
     getGameKeywords() {
-        const min = parseInt(this.state.gameSize/5)
-        const max = parseInt(this.state.gameSize/2)
+        const min = parseInt(this.state.gameSize / 5)
+        const max = parseInt(this.state.gameSize / 2)
         const size1 = this.randomInt(min, max)
         const size2 = this.randomInt(min, max)
         const size3 = this.state.gameSize - size1 - size2
@@ -117,15 +115,6 @@ class Body extends Component {
         this.setState({
             gameKeywords: shuffle
         })
-
-        for (let i = 0; i < this.state.gameSize; i++) {
-            let pushTrue = this.state.blueBinClass.concat(true)
-            this.setState({
-                blueBinClass: pushTrue,
-                greenBinClass: pushTrue,
-                garbageClass: pushTrue
-            })
-        }
     }
 
     shuffleGameKeywords(array) {
@@ -187,30 +176,32 @@ class Body extends Component {
     toggleClass(id, idx) {
         this.updateProgressBar(idx)
 
-        let newBlue = this.state.blueBinClass.slice();
-        let newGreen = this.state.greenBinClass.slice();
-        let newGarbage = this.state.garbageClass.slice();
-        let newAnswers = this.state.playerAnswers.slice();
+        const blue = document.querySelector(`#blueBinButton-${idx}`)
+        const green = document.querySelector(`#greenBinButton-${idx}`)
+        const garbage = document.querySelector(`#garbageButton-${idx}`)
 
-        newBlue[idx] = true
-        newGreen[idx] = true
-        newGarbage[idx] = true
+        blue.classList.replace('btn-bluebin', 'btn-bluebin-white')
+        green.classList.replace('btn-greenbin', 'btn-greenbin-white')
+        garbage.classList.replace('btn-garbage', 'btn-garbage-white')
 
-        if (id === "Blue Bin") {
-            newBlue[idx] = false
-            newAnswers[idx] = "Blue Bin"
-        } else if (id === "Green Bin") {
-            newGreen[idx] = false
-            newAnswers[idx] = "Green Bin"
-        } else {
-            newGarbage[idx] = false
-            newAnswers[idx] = "Garbage"
+        switch (id) {
+            case "Blue Bin":
+                blue.classList.replace('btn-bluebin-white', 'btn-bluebin')
+                break;
+            case "Green Bin":
+                green.classList.replace('btn-greenbin-white', 'btn-greenbin')
+                break;
+            case "Garbage":
+                garbage.classList.replace('btn-garbage-white', 'btn-garbage')
+                break;
+            default:
+                break;
         }
 
+        let newAnswers = this.state.playerAnswers.slice();
+        newAnswers[idx] = id
+
         this.setState({
-            blueBinClass: newBlue,
-            greenBinClass: newGreen,
-            garbageClass: newGarbage,
             playerAnswers: newAnswers
         })
 
@@ -246,9 +237,6 @@ class Body extends Component {
     rerollGameKeywords() {
         this.setState({
             gameKeywords: [],
-            blueBinClass: [],
-            greenBinClass: [],
-            garbageClass: [],
             playerScore: 0,
             isDisabledButton: false,
             isDisabledSubmitButton: true,
@@ -269,18 +257,15 @@ class Body extends Component {
                             return (
                                 <div className="col-md-6 p-3 text-center border-bottom" key={index}>
                                     <h4 className="text-capitalize">{obj.keyword} <i class=""></i></h4>
-                                    <button type="button" className={this.state.blueBinClass[index] ?
-                                        'btn btn-bluebin-white mr-2' : 'btn btn-bluebin mr-2'}
+                                    <button type="button" id={`blueBinButton-${index}`} className='btn btn-bluebin-white mr-2'
                                         onClick={this.toggleClass.bind(this, "Blue Bin", index)}
                                         disabled={this.state.isDisabledButton}>Blue Bin
                                     </button>
-                                    <button type="button" className={this.state.greenBinClass[index] ?
-                                        'btn btn-greenbin-white mr-2' : 'btn btn-greenbin mr-2'}
+                                    <button type="button" id={`greenBinButton-${index}`} className='btn btn-greenbin-white mr-2'
                                         onClick={this.toggleClass.bind(this, "Green Bin", index)}
                                         disabled={this.state.isDisabledButton}>Green Bin
                                     </button>
-                                    <button type="button" className={this.state.garbageClass[index] ?
-                                        'btn btn-garbage-white mr-2' : 'btn btn-garbage mr-2'}
+                                    <button type="button" id={`garbageButton-${index}`} className='btn btn-garbage-white mr-2'
                                         onClick={this.toggleClass.bind(this, "Garbage", index)}
                                         disabled={this.state.isDisabledButton}>Garbage
                                     </button>
