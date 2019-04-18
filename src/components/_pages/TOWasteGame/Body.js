@@ -8,8 +8,9 @@ class Body extends Component {
         super(props)
 
         this.state = {
-            // All Data
+            // Game
             gameSize: 10,
+            gameKeywords: [],
             // Blue Bin
             blueBinKeywords: [],
             blueBinClass: [],
@@ -19,8 +20,6 @@ class Body extends Component {
             // Garbage
             garbageKeywords: [],
             garbageClass: [],
-            // Selected Game Keywords
-            gameKeywords: [],
             // Player Answers
             playerAnswers: [],
             scoredOrNot: [],
@@ -44,7 +43,6 @@ class Body extends Component {
                 .then(res => res.json())
                 .then(res => {
                     resolve(res)
-                    // console.log("Got Toronto Waste Data.")
                 }).catch((err) => {
                     reject("Error: " + err)
                 })
@@ -53,29 +51,26 @@ class Body extends Component {
         dataPromise.then((data) => {
             for (let i = 0; data.length > i; i++) {
                 let pushIt
-
-                if (data[i].category === "Blue Bin") {
-                    let key = data[i].keywords.split(',');
-                    for (let i = 0; i < key.length; i++) {
-                        pushIt = this.state.blueBinKeywords.concat(key[i])
+                let key = data[i].keywords.split(',');
+                for (let j = 0; j < key.length; j++) {
+                    if (key[j] !== "") {
+                        switch (data[i].category) {
+                            case "Blue Bin":
+                                pushIt = this.state.blueBinKeywords.concat(key[j].trim())
+                                this.setState({ blueBinKeywords: pushIt })
+                                break;
+                            case "Green Bin":
+                                pushIt = this.state.greenBinKeywords.concat(key[j].trim())
+                                this.setState({ greenBinKeywords: pushIt })
+                                break;
+                            case "Garbage":
+                                pushIt = this.state.garbageKeywords.concat(key[j].trim())
+                                this.setState({ garbageKeywords: pushIt })
+                                break;
+                            default:
+                                break;
+                        }
                     }
-                    this.setState({ blueBinKeywords: pushIt })
-                }
-
-                if (data[i].category === "Green Bin") {
-                    let key = data[i].keywords.split(',');
-                    for (let i = 0; i < key.length; i++) {
-                        pushIt = this.state.greenBinKeywords.concat(key[i])
-                    }
-                    this.setState({ greenBinKeywords: pushIt })
-                }
-
-                if (data[i].category === "Garbage") {
-                    let key = data[i].keywords.split(',');
-                    for (let i = 0; i < key.length; i++) {
-                        pushIt = this.state.garbageKeywords.concat(key[i])
-                    }
-                    this.setState({ garbageKeywords: pushIt })
                 }
             }
             this.getGameKeywords()
