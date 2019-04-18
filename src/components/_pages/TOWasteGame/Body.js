@@ -149,11 +149,11 @@ class Body extends Component {
     }
 
     getGameKeywords() {
-        let min = 2
-        let max = 5
-        let size1 = this.randomInt(min, max)
-        let size2 = this.randomInt(min, max)
-        let size3 = this.state.gameSize - size1 - size2
+        const min = 2
+        const max = 5
+        const size1 = this.randomInt(min, max)
+        const size2 = this.randomInt(min, max)
+        const size3 = this.state.gameSize - size1 - size2
 
         this.insertGameKeywords(this.state.blueBinKeywords, "Blue Bin", size1)
         this.insertGameKeywords(this.state.greenBinKeywords, "Green Bin", size2)
@@ -176,7 +176,7 @@ class Body extends Component {
     }
 
     shuffleGameKeywords(array) {
-        let size = array.length
+        const size = array.length
         let tempArray
         let index
 
@@ -232,7 +232,6 @@ class Body extends Component {
     }
 
     toggleClass(id, idx) {
-
         this.updateProgressBar(idx)
 
         let newBlue = this.state.blueBinClass.slice();
@@ -240,23 +239,17 @@ class Body extends Component {
         let newGarbage = this.state.garbageClass.slice();
         let newAnswers = this.state.playerAnswers.slice();
 
+        newBlue[idx] = true
+        newGreen[idx] = true
+        newGarbage[idx] = true
+
         if (id === "Blue Bin") {
             newBlue[idx] = false
-            newGreen[idx] = true
-            newGarbage[idx] = true
             newAnswers[idx] = "Blue Bin"
-        }
-
-        if (id === "Green Bin") {
-            newBlue[idx] = true
+        } else if (id === "Green Bin") {
             newGreen[idx] = false
-            newGarbage[idx] = true
             newAnswers[idx] = "Green Bin"
-        }
-
-        if (id === "Garbage") {
-            newBlue[idx] = true
-            newGreen[idx] = true
+        } else {
             newGarbage[idx] = false
             newAnswers[idx] = "Garbage"
         }
