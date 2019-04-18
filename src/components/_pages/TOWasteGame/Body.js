@@ -257,15 +257,18 @@ class Body extends Component {
                             return (
                                 <div className="col-md-6 p-3 text-center border-bottom" key={index}>
                                     <h4 className="text-capitalize">{obj.keyword} <i class=""></i></h4>
-                                    <button type="button" id={`blueBinButton-${index}`} className='btn btn-bluebin-white mr-2'
+                                    <button type="button" id={`blueBinButton-${index}`}
+                                        className='btn btn-bluebin-white mr-2'
                                         onClick={this.toggleClass.bind(this, "Blue Bin", index)}
                                         disabled={this.state.isDisabledButton}>Blue Bin
                                     </button>
-                                    <button type="button" id={`greenBinButton-${index}`} className='btn btn-greenbin-white mr-2'
+                                    <button type="button" id={`greenBinButton-${index}`}
+                                        className='btn btn-greenbin-white mr-2'
                                         onClick={this.toggleClass.bind(this, "Green Bin", index)}
                                         disabled={this.state.isDisabledButton}>Green Bin
                                     </button>
-                                    <button type="button" id={`garbageButton-${index}`} className='btn btn-garbage-white mr-2'
+                                    <button type="button" id={`garbageButton-${index}`}
+                                        className='btn btn-garbage-white mr-2'
                                         onClick={this.toggleClass.bind(this, "Garbage", index)}
                                         disabled={this.state.isDisabledButton}>Garbage
                                     </button>

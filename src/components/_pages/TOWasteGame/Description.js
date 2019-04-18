@@ -1,8 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class Description extends Component {
-
-    render() {
+const Description = () => {
         return (
             <div className="container border rounded p-3">
                 <div className="row">
@@ -36,5 +34,5 @@ class Description extends Component {
                 </div>
             </div>
         )
-    }
-} export default Description
+}
+export default Description
