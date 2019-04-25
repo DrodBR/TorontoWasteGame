@@ -55,14 +55,6 @@ a {
   color: white; }
 
 /* PROGRESS BAR */
-.progress-bar-striped2 {
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-size: 1rem 1rem; }
-
-.bg-progress {
-  background-color: #165788 !important; }
-
-/* PROGRESS BAR SIZES -- w-50 and w-100 are already included in Bootstrap */
 .w-0 {
   width: 0%; }
 
@@ -78,6 +70,9 @@ a {
 .w-40 {
   width: 40%; }
 
+.w-50 {
+  width: 50%; }
+
 .w-60 {
   width: 60%; }
 
@@ -89,3 +84,13 @@ a {
 
 .w-90 {
   width: 90%; }
+
+.w-100 {
+  width: 100%; }
+
+.progress-bar-striped2 {
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 1rem 1rem; }
+
+.bg-progress {
+  background-color: #165788 !important; }

@@ -1,39 +1,28 @@
 /* BUTTONS */
+
+$buttons: (bluebin: $bluebin, greenbin: $greenbin, garbage: $garbage);
+
 @mixin unselected-button($color) {
-    background-color: $secondary-color;
+    background-color: $secondary;
     border-color: $color;
     color: $color;
   }
   
   @mixin selected-button($color) {
     background-color: $color;
-    color: $secondary-color;
+    color: $secondary;
   }
 
-.btn-bluebin {
-    @include selected-button($bluebin-color);
+  @each $button, $color in $buttons {
+      .btn-#{$button} {
+          @include selected-button($color);
+      }
+
+      .btn-#{$button}-white {
+          @include unselected-button($color)
+      }
   }
-  
-  .btn-bluebin-white {
-    @include unselected-button($bluebin-color);
-  }
-  
-  .btn-greenbin {
-    @include selected-button($greenbin-color);
-  }
-  
-  .btn-greenbin-white {
-    @include unselected-button($greenbin-color);
-  }
-  
-  .btn-garbage {
-    @include selected-button($garbage-color);
-  }
-  
-  .btn-garbage-white {
-    @include unselected-button($garbage-color);
-  }
-  
+
   .btn-bottom {
-    @include selected-button($primary-color);
+      @include selected-button($primary)
   }

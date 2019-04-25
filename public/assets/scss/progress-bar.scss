@@ -1,9 +1,18 @@
 /* PROGRESS BAR */
+
+$width-sizes: 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100;
+
 @mixin progress-bar-width($size) {
-    width: percentage($size / 100);
+    width: ($size / 100) * 100%;
   }
 
-.progress-bar-striped2 {
+  @each $size in $width-sizes {
+      .w-#{$size} {
+        @include progress-bar-width($size);
+      };
+  }
+
+  .progress-bar-striped2 {
     background-image: linear-gradient(
       45deg,
       rgba(255, 255, 255, 0.15) 25%,
@@ -18,43 +27,5 @@
   }
   
   .bg-progress {
-    background-color: $primary-color !important;
-  }
-  
-  /* PROGRESS BAR SIZES -- w-50 and w-100 are already included in Bootstrap */
-  
-  .w-0 {
-    @include progress-bar-width(0);
-  }
-  
-  .w-10 {
-    @include progress-bar-width(10);
-  }
-  
-  .w-20 {
-    @include progress-bar-width(20);
-  }
-  
-  .w-30 {
-    @include progress-bar-width(30);
-  }
-  
-  .w-40 {
-    @include progress-bar-width(40);
-  }
-  
-  .w-60 {
-    @include progress-bar-width(60);
-  }
-  
-  .w-70 {
-    @include progress-bar-width(70);
-  }
-  
-  .w-80 {
-    @include progress-bar-width(80);
-  }
-  
-  .w-90 {
-    @include progress-bar-width(90);
+    background-color: $primary !important;
   }

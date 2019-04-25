@@ -1,14 +1,15 @@
 /* MAIN LAYOUR */
-$logo-font: "Fjalla One", sans-serif; 
+$logo-font: "Fjalla One", sans-serif;
+$icons: (bluebin: $bluebin, greenbin: $greenbin, garbage: $garbage);
 
 a {
-  color: $primary-color;
+  color: $primary;
 }
 
 // NAVBAR & FOOTER
 .headerfooter {
-  background-color: $primary-color;
-  color: $secondary-color;
+  background-color: $primary;
+  color: $secondary;
 }
 
 .logo-font {
@@ -21,14 +22,9 @@ a {
 }
 
 // DESCRIPTION
-.icon-bluebin {
-  color: $bluebin-color;
-}
 
-.icon-greenbin {
-  color: $greenbin-color;
-}
-
-.icon-garbage {
-  color: $garbage-color;
+@each $icon, $color in $icons {
+    .icon-#{$icon} {
+        color: $color
+    }
 }
