@@ -1,0 +1,140 @@
+$toronto-color: #165788;
+$bluebin-color: #4f8dc9;
+$greenbin-color: #538259;
+$garbage-color: #211c1b;
+$logo-font: "Fjalla One", sans-serif;
+
+@mixin unselected-button($color) {
+  background-color: white;
+  border-color: $color;
+  color: $color;
+}
+
+@mixin selected-button($color) {
+  background-color: $color;
+  color: white;
+}
+
+@mixin progress-bar-width($size) {
+  width: percentage($size / 100);
+}
+
+a {
+  color: $toronto-color;
+}
+
+// NAVBAR & FOOTER
+.headerfooter {
+  background-color: $toronto-color;
+  color: white;
+}
+
+.logo-font {
+  font-family: $logo-font;
+}
+
+.centralize {
+  margin: 0 auto;
+  float: none;
+}
+
+// DESCRIPTION
+.icon-bluebin {
+  color: #4f8dc9;
+}
+
+.icon-greenbin {
+  color: #538259;
+}
+
+.icon-garbage {
+  color: #211c1b;
+}
+
+/* BUTTONS */
+
+.btn-bluebin {
+  @include selected-button($bluebin-color);
+}
+
+.btn-bluebin-white {
+  @include unselected-button($bluebin-color);
+}
+
+.btn-greenbin {
+  @include selected-button($greenbin-color);
+}
+
+.btn-greenbin-white {
+  @include unselected-button($greenbin-color);
+}
+
+.btn-garbage {
+  @include selected-button($garbage-color);
+}
+
+.btn-garbage-white {
+  @include unselected-button($garbage-color);
+}
+
+.btn-bottom {
+  @include selected-button($toronto-color);
+}
+
+/* PROGRESS BAR */
+
+.progress-bar-striped2 {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 1rem 1rem;
+}
+
+.bg-progress {
+  background-color: $toronto-color !important;
+}
+
+/* PROGRESS BAR SIZES -- w-50 and w-100 are already included in Bootstrap */
+
+.w-0 {
+  @include progress-bar-width(0);
+}
+
+.w-10 {
+  @include progress-bar-width(10);
+}
+
+.w-20 {
+  @include progress-bar-width(20);
+}
+
+.w-30 {
+  @include progress-bar-width(30);
+}
+
+.w-40 {
+  @include progress-bar-width(40);
+}
+
+.w-60 {
+  @include progress-bar-width(60);
+}
+
+.w-70 {
+  @include progress-bar-width(70);
+}
+
+.w-80 {
+  @include progress-bar-width(80);
+}
+
+.w-90 {
+  @include progress-bar-width(90);
+}

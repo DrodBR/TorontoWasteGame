@@ -4,16 +4,19 @@
   "private": true,
   "dependencies": {
     "firebase-tools": "^6.6.0",
+    "node-sass": "^4.11.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "typescript": "^3.4.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build-css": "node-sass public/assets/scss/main.scss public/assets/css/main.css --include-path scss -w"
   },
   "eslintConfig": {
     "extends": "react-app"

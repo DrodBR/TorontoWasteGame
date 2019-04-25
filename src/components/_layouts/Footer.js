@@ -7,7 +7,7 @@ class Footer extends Component {
     render() {
         return (
             <div className="pt-3">
-                <div className="footercustom">
+                <div className="headerfooter">
                     <div className="container">
                         <div className="row py-3">
                             <Footer1 />
