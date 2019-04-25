@@ -2,13 +2,13 @@
 $logo-font: "Fjalla One", sans-serif; 
 
 a {
-  color: $toronto-color;
+  color: $primary-color;
 }
 
 // NAVBAR & FOOTER
 .headerfooter {
-  background-color: $toronto-color;
-  color: white;
+  background-color: $primary-color;
+  color: $secondary-color;
 }
 
 .logo-font {
@@ -22,13 +22,13 @@ a {
 
 // DESCRIPTION
 .icon-bluebin {
-  color: #4f8dc9;
+  color: $bluebin-color;
 }
 
 .icon-greenbin {
-  color: #538259;
+  color: $greenbin-color;
 }
 
 .icon-garbage {
-  color: #211c1b;
+  color: $garbage-color;
 }

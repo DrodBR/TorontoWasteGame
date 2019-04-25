@@ -1,13 +1,13 @@
 /* BUTTONS */
 @mixin unselected-button($color) {
-    background-color: white;
+    background-color: $secondary-color;
     border-color: $color;
     color: $color;
   }
   
   @mixin selected-button($color) {
     background-color: $color;
-    color: white;
+    color: $secondary-color;
   }
 
 .btn-bluebin {
@@ -35,5 +35,5 @@
   }
   
   .btn-bottom {
-    @include selected-button($toronto-color);
+    @include selected-button($primary-color);
   }
