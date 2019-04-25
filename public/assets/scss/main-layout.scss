@@ -1,0 +1,34 @@
+/* MAIN LAYOUR */
+$logo-font: "Fjalla One", sans-serif; 
+
+a {
+  color: $toronto-color;
+}
+
+// NAVBAR & FOOTER
+.headerfooter {
+  background-color: $toronto-color;
+  color: white;
+}
+
+.logo-font {
+  font-family: $logo-font;
+}
+
+.centralize {
+  margin: 0 auto;
+  float: none;
+}
+
+// DESCRIPTION
+.icon-bluebin {
+  color: #4f8dc9;
+}
+
+.icon-greenbin {
+  color: #538259;
+}
+
+.icon-garbage {
+  color: #211c1b;
+}
