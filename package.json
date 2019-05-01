@@ -10,7 +10,7 @@
     "typescript": "^3.4.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "webpack-dev-server --mode development --open",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "test": "react-scripts test",
