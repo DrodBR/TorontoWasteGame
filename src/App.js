@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import  Home from './components/_pages/Home';
+import Home from './components/_pages/Home';
 
-class App extends Component {
-  render() {
-    return (
-      <Switch>
-        <Route exact path='/' render={() => (
-          <Home />
-        )} />
-        <Route exact path='**' render={() => (
-          <Home />
-        )} />
-      </Switch>
-    );
-  }
+const App = () => {
+  return (
+    <Switch>
+      <Route exact path='/' render={() => (
+        <Home />
+      )} />
+      <Route exact path='**' render={() => (
+        <Home />
+      )} />
+    </Switch>
+  );
 }
 
 export default App;
