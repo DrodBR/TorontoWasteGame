@@ -34,6 +34,10 @@ class Body extends Component {
         this.rerollGameKeywords = this.rerollGameKeywords.bind(this)
     }
 
+    componentDidMount() {
+        this.getDataAPI()
+    }
+
     getDataAPI() {
         const dataPromise = new Promise((resolve, reject) => {
             fetch("https://secure.toronto.ca/cc_sr_v1/data/swm_waste_wizard_APR?limit=1000")
@@ -48,7 +52,7 @@ class Body extends Component {
         dataPromise.then((data) => {
             for (let i = 0; data.length > i; i++) {
                 let pushIt
-                let key = data[i].keywords.split(',');
+                const key = data[i].keywords.split(',');
 
                 for (let j = 0; j < key.length; j++) {
                     if (key[j] !== "") {
@@ -76,10 +80,6 @@ class Body extends Component {
         }).catch((err) => {
             console.log(err)
         })
-    }
-
-    componentDidMount() {
-        this.getDataAPI()
     }
 
     randomInt(min, max) {
@@ -157,8 +157,6 @@ class Body extends Component {
             phrase: newPhrase,
             phraseIcon: newPhraseIcon
         })
-        // console.log(this.state.scoredOrNot)
-        // console.log(this.state.phrase)
         this.disableButton()
     }
 
@@ -205,21 +203,19 @@ class Body extends Component {
             playerAnswers: newAnswers
         })
 
-        this.checkIfPlayedAdd()
+        this.checkIfPlayedAll()
     }
 
-    checkIfPlayedAdd() {
+    checkIfPlayedAll() {
         let count = 0
 
         for (let i = 0; i < this.state.gameKeywords.length; i++) {
-            if (typeof this.state.playerAnswers[i] !== 'undefined') {
+            if (typeof this.state.playerAnswers[i] !== 'undefined')
                 count++
-            }
         }
 
-        if (count === (this.state.gameKeywords.length - 1)) {
+        if (count === (this.state.gameKeywords.length - 1))
             this.disableSubmitButton(false)
-        }
     }
 
     disableButton() {
@@ -234,7 +230,7 @@ class Body extends Component {
         })
     }
 
-    rerollGameKeywords() {
+    resetGame() {
         this.setState({
             gameKeywords: [],
             playerScore: 0,
@@ -243,6 +239,10 @@ class Body extends Component {
             playerAnswers: [],
             progressBarSize: 0,
         })
+    }
+
+    rerollGameKeywords() {
+        this.resetGame()
         this.getDataAPI()
     }
 
