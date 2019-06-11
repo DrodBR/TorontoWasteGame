@@ -7,7 +7,7 @@ Daniel F G Rodrigues
 * [Node.js](https://nodejs.org) - JavaScript Runtime Environment
 * [Bootstrap](https://getbootstrap.com/) - Framework
 * [Sass](https://sass-lang.com/) - CSS Preprocessor
-* [Webpack 4](https://webpack.js.org/) - Module Builder
+* [Webpack 4](https://webpack.js.org/) - Module Builder (Error. Not used on last deployment)
 
 ## Demo
 Go to: [https://torontowastegame.firebaseapp.com/](https://torontowastegame.firebaseapp.com/)

@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/runtime": "^7.4.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
@@ -13,6 +15,7 @@
     "start": "react-scripts start",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
+    "buildit": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build-css": "node-sass src/assets/scss/main.scss src/assets/css/main.css --include-path scss -w"
