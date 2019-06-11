@@ -1,123 +1,105 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import Modal from './Modal'
 import Description from './Description'
 import ProgressBar from './ProgressBar'
 
-class Body extends Component {
-    constructor(props) {
-        super(props)
+const Body = () => {
 
-        this.state = {
-            // Game
-            gameSize: 10,
-            gameKeywords: [],
-            // Blue Bin
-            blueBinKeywords: [],
-            // Green Bin
-            greenBinKeywords: [],
-            // Garbage
-            garbageKeywords: [],
-            // Player Answers
-            playerAnswers: [],
-            scoredOrNot: [],
-            phrase: [],
-            phraseIcon: [],
-            playerScore: 0,
-            // control buttons
-            isDisabledButton: false,
-            isDisabledSubmitButton: true,
-            // progress bar
-            progressBarSize: 0,
+    // eslint-disable-next-line no-unused-vars
+    const [gameSize, setGameSize] = useState(10)
+    const [gameKeywords, setGameKeywords] = useState([])
+
+    const [completeData, setCompleteData] = useState([])
+    const [blueBinKeywords, setBlueBinKeywords] = useState([])
+    const [greenBinKeywords, setGreenBinKeywords] = useState([])
+    const [garbageKeywords, setGarbageKeywords] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+
+    const [playerAnswers, setPlayerAnswers] = useState([])
+    const [scoredOrNot, setScoreOrNot] = useState([])
+    const [phrase, setPhrase] = useState([])
+    const [phraseIcon, setPhraseIcon] = useState([])
+    const [playerScore, setPlayerScore] = useState(0)
+
+    const [isDisabledButton, setIsDisabledButton] = useState(false)
+    const [isDisabledSubmitButton, setIsDisabledSubmitButton] = useState(true)
+
+    const [progressBarSize, setProgressBarSize] = useState(0)
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch("https://secure.toronto.ca/cc_sr_v1/data/swm_waste_wizard_APR?limit=1000")
+            const data = await response.json()
+            setCompleteData(data)
         }
-        this.toggleClass = this.toggleClass.bind(this)
-        this.finalScore = this.finalScore.bind(this)
-        this.rerollGameKeywords = this.rerollGameKeywords.bind(this)
+        fetchData()
+    }, [])
+
+    useEffect(() => {
+        if (completeData.length > 0) {
+            defineSelectedKeywords()
+        }
+    }, [completeData])
+
+    useEffect(() => {
+        if (blueBinKeywords.length > 0 && greenBinKeywords.length > 0 && garbageKeywords.length > 0) {
+            selectGameKeywords()
+        }
+    }, [blueBinKeywords, greenBinKeywords, garbageKeywords])
+
+    const defineSelectedKeywords = () => {
+        setBlueBinKeywords(splitData("Blue Bin"))
+        setGreenBinKeywords(splitData("Green Bin"))
+        setGarbageKeywords(splitData("Garbage"))
     }
 
-    componentDidMount() {
-        this.getDataAPI()
-    }
-
-    getDataAPI() {
-        const dataPromise = new Promise((resolve, reject) => {
-            fetch("https://secure.toronto.ca/cc_sr_v1/data/swm_waste_wizard_APR?limit=1000")
-                .then(res => res.json())
-                .then(res => {
-                    resolve(res)
-                }).catch((err) => {
-                    reject("Error: " + err)
-                })
-        })
-
-        dataPromise.then((data) => {
-            for (let i = 0; data.length > i; i++) {
-                let pushIt
-                const key = data[i].keywords.split(',');
-
-                for (let j = 0; j < key.length; j++) {
-                    if (key[j] !== "") {
-                        switch (data[i].category) {
-                            case "Blue Bin":
-                                pushIt = this.state.blueBinKeywords.concat(key[j].trim())
-                                this.setState({ blueBinKeywords: pushIt })
-                                break;
-                            case "Green Bin":
-                                pushIt = this.state.greenBinKeywords.concat(key[j].trim())
-                                this.setState({ greenBinKeywords: pushIt })
-                                break;
-                            case "Garbage":
-                                pushIt = this.state.garbageKeywords.concat(key[j].trim())
-                                this.setState({ garbageKeywords: pushIt })
-                                break;
-                            default:
-                                break;
-                        }
+    const splitData = kind => {
+        let myData = []
+        for (let i = 0; completeData.length > i; i++) {
+            const key = completeData[i].keywords.split(',');
+            for (let j = 0; key.length > j; j++) {
+                if (key[j] !== "") {
+                    if (completeData[i].category === kind) {
+                        myData.push(key[j].trim())
                     }
                 }
             }
-            this.getGameKeywords()
-
-        }).catch((err) => {
-            console.log(err)
-        })
+        }
+        return myData
     }
 
-    randomInt(min, max) {
+    const randomInt = (min, max) => {
         return parseInt(Math.random() * (+max - +min) + +min)
     }
 
-    insertGameKeywords(categoryKeywords, categoryName, size) {
+    const insertGameKeywords = (categoryKeywords, categoryName, size) => {
         for (let i = 0; size > i; i++) {
-            let keyword = categoryKeywords[this.randomInt(0, categoryKeywords.length)]
-            let pushIt = this.state.gameKeywords.concat({
+            let keyword = categoryKeywords[randomInt(0, categoryKeywords.length)]
+            setGameKeywords(gameKeywords.push({
                 category: categoryName,
                 keyword: keyword,
-            })
-            this.setState({
-                gameKeywords: pushIt
-            })
+            }))
         }
     }
 
-    getGameKeywords() {
-        const min = parseInt(this.state.gameSize / 5)
-        const max = parseInt(this.state.gameSize / 2)
-        const size1 = this.randomInt(min, max)
-        const size2 = this.randomInt(min, max)
-        const size3 = this.state.gameSize - size1 - size2
+    const selectGameKeywords = () => {
+        const min = parseInt(gameSize / 5)
+        const max = parseInt(gameSize / 2)
+        const size1 = randomInt(min, max)
+        const size2 = randomInt(min, max)
+        const size3 = gameSize - size1 - size2
 
-        this.insertGameKeywords(this.state.blueBinKeywords, "Blue Bin", size1)
-        this.insertGameKeywords(this.state.greenBinKeywords, "Green Bin", size2)
-        this.insertGameKeywords(this.state.garbageKeywords, "Garbage", size3)
-        // console.log(this.state.gameKeywords)
+        insertGameKeywords(blueBinKeywords, "Blue Bin", size1)
+        insertGameKeywords(greenBinKeywords, "Green Bin", size2)
+        insertGameKeywords(garbageKeywords, "Garbage", size3)
 
-        let shuffle = this.shuffleGameKeywords(this.state.gameKeywords)
-        this.setState({
-            gameKeywords: shuffle
-        })
+        let shuffle = shuffleGameKeywords(gameKeywords)
+        setGameKeywords(shuffle)
+        setIsLoading(false)
     }
 
-    shuffleGameKeywords(array) {
+    const shuffleGameKeywords = (array) => {
+        console.log('i am shuffle method')
         let size = array.length
         let tempArray
         let index
@@ -132,47 +114,43 @@ class Body extends Component {
         return array
     }
 
-    finalScore() {
+    const finalScore = () => {
         let newScore = 0
-        let newScoredOrNot = this.state.scoredOrNot
-        let newPhrase = this.state.phrase
-        let newPhraseIcon = this.state.phraseIcon
+        let newScoredOrNot = scoredOrNot
+        let newPhrase = phrase
+        let newPhraseIcon = phraseIcon
 
-        for (let i = 0; i < this.state.gameSize; i++) {
-            if (this.state.gameKeywords[i].category === this.state.playerAnswers[i]) {
+        for (let i = 0; i < gameSize; i++) {
+            if (gameKeywords[i].category === playerAnswers[i]) {
                 newScore++
                 newScoredOrNot[i] = true;
                 newPhrase[i] = "Correct";
                 newPhraseIcon[i] = "far fa-check-circle";
             } else {
                 newScoredOrNot[i] = false;
-                newPhrase[i] = this.state.gameKeywords[i].category;
+                newPhrase[i] = gameKeywords[i].category;
                 newPhraseIcon[i] = "far fa-times-circle";
             }
         }
 
-        this.setState({
-            playerScore: newScore,
-            scoredOrNot: newScoredOrNot,
-            phrase: newPhrase,
-            phraseIcon: newPhraseIcon
-        })
-        this.disableButton()
+        setPlayerScore(newScore)
+        setScoreOrNot(newScoredOrNot)
+        setPhrase(newPhrase)
+        setPhraseIcon(newPhraseIcon)
+
+        disableButton()
     }
 
-    updateProgressBar(index) {
-
-        if (typeof this.state.playerAnswers[index] === 'undefined') {
-            let progressSize = this.state.progressBarSize
-            progressSize = progressSize + (100 / (this.state.gameSize))
-            this.setState({
-                progressBarSize: progressSize
-            })
+    const updateProgressBar = (index) => {
+        if (typeof playerAnswers[index] === 'undefined') {
+            let progressSize = progressBarSize
+            progressSize = progressSize + (100 / (gameSize))
+            setProgressBarSize(progressSize)
         }
     }
 
-    toggleClass(id, idx) {
-        this.updateProgressBar(idx)
+    const toggleClass = (id, idx) => {
+        updateProgressBar(idx)
 
         const blue = document.querySelector(`#blueBinButton-${idx}`)
         const green = document.querySelector(`#greenBinButton-${idx}`)
@@ -196,108 +174,101 @@ class Body extends Component {
                 break;
         }
 
-        let newAnswers = this.state.playerAnswers.slice();
+        let newAnswers = playerAnswers.slice();
         newAnswers[idx] = id
 
-        this.setState({
-            playerAnswers: newAnswers
-        })
+        setPlayerAnswers(newAnswers)
 
-        this.checkIfPlayedAll()
+        checkIfPlayedAll()
     }
 
-    checkIfPlayedAll() {
+    const checkIfPlayedAll = () => {
         let count = 0
 
-        for (let i = 0; i < this.state.gameKeywords.length; i++) {
-            if (typeof this.state.playerAnswers[i] !== 'undefined')
+        for (let i = 0; i < gameKeywords.length; i++) {
+            if (typeof playerAnswers[i] !== 'undefined')
                 count++
         }
 
-        if (count === (this.state.gameKeywords.length - 1))
-            this.disableSubmitButton(false)
+        if (count === (gameKeywords.length - 1))
+            disableSubmitButton(false)
     }
 
-    disableButton() {
-        this.setState({
-            isDisabledButton: true
-        })
+    const disableButton = () => {
+        setIsDisabledButton(true)
     }
 
-    disableSubmitButton(status) {
-        this.setState({
-            isDisabledSubmitButton: status
-        })
+    const disableSubmitButton = (status) => {
+        setIsDisabledSubmitButton(status)
     }
 
-    resetGame() {
-        this.setState({
-            gameKeywords: [],
-            playerScore: 0,
-            isDisabledButton: false,
-            isDisabledSubmitButton: true,
-            playerAnswers: [],
-            progressBarSize: 0,
-        })
+    const rerollGameKeywords = () => {
+        setIsLoading(true)
+        setGameKeywords([])
+        setPlayerScore(0)
+        setIsDisabledButton(false)
+        setIsDisabledSubmitButton(true)
+        setPlayerAnswers([])
+        setProgressBarSize(0)
+        defineSelectedKeywords()
     }
 
-    rerollGameKeywords() {
-        this.resetGame()
-        this.getDataAPI()
-    }
-
-    render() {
-        return (
-            <div>
-                <Description />
-                <hr />
-                <div class="container">
-                    <div class="row">
-                        {this.state.gameKeywords.map((obj, index) => {
-                            return (
-                                <div className="col-md-6 p-3 text-center border-bottom" key={index}>
-                                    <h4 className="text-capitalize">{obj.keyword} <i class=""></i></h4>
-                                    <button type="button" id={`blueBinButton-${index}`}
-                                        className='btn btn-bluebin-white mr-2'
-                                        onClick={this.toggleClass.bind(this, "Blue Bin", index)}
-                                        disabled={this.state.isDisabledButton}>Blue Bin
-                                    </button>
-                                    <button type="button" id={`greenBinButton-${index}`}
-                                        className='btn btn-greenbin-white mr-2'
-                                        onClick={this.toggleClass.bind(this, "Green Bin", index)}
-                                        disabled={this.state.isDisabledButton}>Green Bin
-                                    </button>
-                                    <button type="button" id={`garbageButton-${index}`}
-                                        className='btn btn-garbage-white mr-2'
-                                        onClick={this.toggleClass.bind(this, "Garbage", index)}
-                                        disabled={this.state.isDisabledButton}>Garbage
-                                    </button>
-                                    <div className={!this.state.isDisabledButton ? 'p-3 d-none' : 'p-3'}>
-                                        <div className={!this.state.scoredOrNot[index] ? 'text-danger' : ''}>
-                                            <i class={this.state.phraseIcon[index]}></i> {this.state.phrase[index]}
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })}
-                    </div>
-                    <hr />
-                    <ProgressBar size={this.state.progressBarSize} />
-                    <div className="pb-3 text-right">
-                        <button type="button" className="btn btn-bottom m-2" onClick={this.rerollGameKeywords}>Reroll &amp; Play Again</button>
-                        <button type="button" className="btn btn-bottom m-2" onClick={this.finalScore}
-                            disabled={this.state.isDisabledSubmitButton} data-toggle="modal" data-target="#ModalScore">
-                            Get Results
+    const gameTable = (
+        <div className="row">
+            {gameKeywords.map((obj, index) => {
+                return (
+                    <div className="col-md-6 p-3 text-center border-bottom" key={index}>
+                        <h4 className="text-capitalize">{obj.keyword} </h4>
+                        <button type="button" id={`blueBinButton-${index}`}
+                            className='btn btn-bluebin-white mr-2'
+                            onClick={toggleClass.bind(this, "Blue Bin", index)}
+                            disabled={isDisabledButton}>Blue Bin
                         </button>
+                        <button type="button" id={`greenBinButton-${index}`}
+                            className='btn btn-greenbin-white mr-2'
+                            onClick={toggleClass.bind(this, "Green Bin", index)}
+                            disabled={isDisabledButton}>Green Bin
+                        </button>
+                        <button type="button" id={`garbageButton-${index}`}
+                            className='btn btn-garbage-white mr-2'
+                            onClick={toggleClass.bind(this, "Garbage", index)}
+                            disabled={isDisabledButton}>Garbage
+                        </button>
+                        <div className={!isDisabledButton ? 'p-3 d-none' : 'p-3'}>
+                            <div className={!scoredOrNot[index] ? 'text-danger' : ''}>
+                                <i class={phraseIcon[index]}></i> {phrase[index]}
+                            </div>
+                        </div>
                     </div>
-                </div>
+                )
+            })}
+        </div>
+    )
 
-                <Modal title="Score" score={this.state.playerScore} size={this.state.gameSize}>
-                    Your score is:
-                    <h1>{this.state.playerScore}/{this.state.gameSize}</h1>
-                </Modal>
+    const content = (
+        <div>
+            <Description />
+            <hr />
+            <div className="container">
+                    {isLoading ? 'Game is Loading!' : gameTable}
+                <hr />
+                <ProgressBar size={progressBarSize} />
+                <div className="pb-3 text-right">
+                    <button type="button" className="btn btn-bottom m-2" onClick={rerollGameKeywords}>Reroll &amp; Play Again</button>
+                    <button type="button" className="btn btn-bottom m-2" onClick={finalScore}
+                        disabled={isDisabledSubmitButton} data-toggle="modal" data-target="#ModalScore">
+                        Get Results
+                    </button>
+                </div>
             </div>
-        )
-    }
+
+            <Modal title="Score" score={playerScore} size={gameSize}>
+                Your score is:
+                    <h1>{playerScore}/{gameSize}</h1>
+            </Modal>
+        </div>
+    )
+
+    return content
 }
 export default Body
