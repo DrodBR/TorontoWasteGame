@@ -54,18 +54,12 @@ const Body = () => {
     }
 
     const splitData = kind => {
-        let myData = []
-        for (let i = 0; completeData.length > i; i++) {
-            const key = completeData[i].keywords.split(',');
-            for (let j = 0; key.length > j; j++) {
-                if (key[j] !== "") {
-                    if (completeData[i].category === kind) {
-                        myData.push(key[j].trim())
-                    }
-                }
-            }
-        }
-        return myData
+
+        const kindValidGroup = completeData.filter(data => data.category === kind && data.keyword !== "")
+        const kindSplitted = kindValidGroup.map(data => data.keywords.split(','))
+        const kindOrganized = kindSplitted.reduce((prev, curr) => prev.concat(curr))
+
+        return kindOrganized
     }
 
     const randomInt = (min, max) => {
@@ -99,7 +93,6 @@ const Body = () => {
     }
 
     const shuffleGameKeywords = (array) => {
-        console.log('i am shuffle method')
         let size = array.length
         let tempArray
         let index
@@ -183,14 +176,10 @@ const Body = () => {
     }
 
     const checkIfPlayedAll = () => {
-        let count = 0
 
-        for (let i = 0; i < gameKeywords.length; i++) {
-            if (typeof playerAnswers[i] !== 'undefined')
-                count++
-        }
+        const count = playerAnswers.filter(v => v !== 'undefined')
 
-        if (count === (gameKeywords.length - 1))
+        if (count.length === (gameKeywords.length - 1))
             disableSubmitButton(false)
     }
 
@@ -250,7 +239,7 @@ const Body = () => {
             <Description />
             <hr />
             <div className="container">
-                    {isLoading ? 'Game is Loading!' : gameTable}
+                {isLoading ? 'Game is Loading!' : gameTable}
                 <hr />
                 <ProgressBar size={progressBarSize} />
                 <div className="pb-3 text-right">
